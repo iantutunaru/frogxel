@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0f861cccc118f824cb5ae1523dcc4b61
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - slowObstacle: {instanceID: 0}
+  - fastObstacle: {instanceID: 0}
+  - normalObstacle: {instanceID: 0}
+  - normalObstacleTwo: {instanceID: 0}
+  - smoothObstacle: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
