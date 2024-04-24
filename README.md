@@ -16,3 +16,6 @@ Welcome to Frogxel, a dynamic Unity-based game where up to 4 players compete for
 
 ## Contributing
 Your contributions are welcome! Please feel free to submit pull requests or open issues to discuss potential improvements or fixes.
+
+## Playable demo
+https://sharemygame.com/@Ianon/frogxel
