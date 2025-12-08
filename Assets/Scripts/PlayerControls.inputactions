@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "PlayerControls",
     "maps": [
         {
@@ -18,7 +19,7 @@
                     "name": "MenuJoin",
                     "type": "Button",
                     "id": "260d6379-b086-4097-aca4-ff326fcea439",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
