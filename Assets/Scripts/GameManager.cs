@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,15 +19,15 @@ public class GameManager : MonoBehaviour
     public GameObject startMenu;
     // GameObject containing game over text
     public GameObject gameOverMenu;
-    // Text object that is used to dipslay victor's number and score
+    // Text object that is used to display the victor's number and score
     public Text gameWonText;
     // Text object used with game overs and round won scenarios
     public Text playAgainText;
     // Text representation of the first player score
     public Text scoreTextPlayerOne;
-    // Text reprentation of the second player score
+    // Text representation of the second player score
     public Text scoreTextPlayerTwo;
-    // Text represenation of the third player score
+    // Text representation of the third player score
     public Text scoreTextPlayerThree;
     // Text representation of the fourth player score
     public Text scoreTextPlayerFour;
@@ -34,10 +35,10 @@ public class GameManager : MonoBehaviour
     private Text[] scores;
     // Text used to present time left to the players
     public Text timeText;
-    // List of all players currenty playing
+    // List of all players currently playing
     private List<PlayerController> froggers = new List<PlayerController>();
-    // Bool showing whenether the round is in progress or it has ended
-    private bool gameEnded = false;
+    // Bool showing whenever the round is in progress, or it has ended
+    private bool gameEnded;
     // Instance of the Player Manager
     private PlayerManager playerManager;
 
@@ -46,11 +47,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        homes = FindObjectsOfType<Home>();
-        laneController = FindObjectOfType<LaneController>();
-        playerManager = FindObjectOfType<PlayerManager>();
+        homes = FindObjectsByType<Home>(FindObjectsSortMode.None);
+        laneController = FindFirstObjectByType<LaneController>();
+        playerManager = FindFirstObjectByType<PlayerManager>();
 
-        scores = new Text[4] 
+        scores = new[] 
         {
             scoreTextPlayerOne, scoreTextPlayerTwo, scoreTextPlayerThree, scoreTextPlayerFour,
         };
@@ -112,21 +113,20 @@ public class GameManager : MonoBehaviour
     private void NewLevel()
     {
         // Hide trophy of each home to re-enable capturing
-        for (int i = 0; i < homes.Length; i++)
+        foreach (var home in homes)
         {
-            homes[i].enabled = false;
+            home.enabled = false;
         }
 
         StartCoroutine(Timer(120));
 
         // Check if there are player in the game
-        if (froggers.Count > 0)
+        if (froggers.Count <= 0) return;
+        
+        // Respawn every player
+        foreach (var frogger in froggers)
         {
-            // Respawn every player
-            foreach (PlayerController frogger in froggers)
-            {
-                Respawn();
-            }
+            Respawn();
         }
     }
 
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
     private void Respawn()
     {
         // Go through each player in the game
-        foreach (PlayerController frogger in froggers)
+        foreach (var frogger in froggers)
         {
             // Check if player is dead, captured a home or finished the round and respawn them
             if (!frogger.enabled || frogger.GetWon())
@@ -219,14 +219,7 @@ public class GameManager : MonoBehaviour
     public void Died()
     {
         // If timer is not 0 then respawn the player, otherwise end the game
-        if (time > 0)
-        {
-            Invoke(nameof(Respawn), 1f);
-        }
-        else
-        {
-            Invoke(nameof(GameOver), 1f);
-        }
+        Invoke(time > 0 ? nameof(Respawn) : nameof(GameOver), 1f);
     }
 
     /// <summary>
@@ -350,7 +343,7 @@ public class GameManager : MonoBehaviour
 
         SetScore(frogger, frogger.GetScore() + 500);
 
-        // Check if all homes have been capured
+        // Check if all homes have been captured
         if (Cleared())
         {
             SetScore(frogger, frogger.GetScore() + 1000);
@@ -369,15 +362,6 @@ public class GameManager : MonoBehaviour
     private bool Cleared()
     {
         // Go through each home
-        for (int i = 0; i < homes.Length;i++)
-        {
-            // If home is not occupied then return false
-            if (!homes[i].enabled)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return homes.All(home => home.enabled);
     }
 }

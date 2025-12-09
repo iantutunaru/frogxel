@@ -21,8 +21,10 @@ public class MoveCycle : MonoBehaviour
     /// <summary>
     /// Initialize and find edges on the start of the game
     /// </summary>
-    void Start()
+    private void Start()
     {
+        if (Camera.main == null) return;
+        
         leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
         rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
     }
@@ -30,26 +32,32 @@ public class MoveCycle : MonoBehaviour
     /// <summary>
     /// Move the object either to the left or right and if the object reaches an edge then move it to the opposite edge
     /// </summary>
-    void Update()
+    private void Update()
     {
-        // Check if object is moving right and at least half of it crossed the right edge
-        if (direction.x > 0 && (transform.position.x - size/sizeModifier) > rightEdge.x)
+        switch (direction.x)
         {
-            Vector3 position = transform.position;
-            position.x = leftEdge.x - size/sizeModifier;
-            transform.position = position;
+            // Check if object is moving right and at least half of it crossed the right edge
+            case > 0 when (transform.position.x - size/sizeModifier) > rightEdge.x:
+            {
+                var position = transform.position;
+                position.x = leftEdge.x - size/sizeModifier;
+                transform.position = position;
 
-        // Check if the object is moving left and at least half of it crossed the left edge
-        } else if (direction.x < 0 && (transform.position.x + size/sizeModifier)  < leftEdge.x)
-        {
-            Vector3 position = transform.position;
-            position.x = rightEdge.x + size/sizeModifier;
-            transform.position = position;
+                // Check if the object is moving left and at least half of it crossed the left edge
+                break;
+            }
+            case < 0 when (transform.position.x + size/sizeModifier)  < leftEdge.x:
+            {
+                var position = transform.position;
+                position.x = rightEdge.x + size/sizeModifier;
+                transform.position = position;
 
-        // Move the object in the set direction at the set speed
-        } else
-        {
-            transform.Translate(direction * speed * Time.deltaTime);
+                // Move the object in the set direction at the set speed
+                break;
+            }
+            default:
+                transform.Translate(direction * (speed * Time.deltaTime));
+                break;
         }
     }
 }

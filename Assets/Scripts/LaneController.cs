@@ -50,7 +50,7 @@ public class LaneController : MonoBehaviour
     private List<GameObject> platformList;
     // Boolean flag for obstacles for generation purposes
     private bool obstacleFlag = true;
-    // Boolean flage for platforms for generation purposes
+    // Boolean flag for platforms for generation purposes
     private bool platformFlag = false;
     // Current game object that is being placed in the lane
     private GameObject currLaneObj;
@@ -64,7 +64,7 @@ public class LaneController : MonoBehaviour
     private Vector3 rightEdge;
 
     /// <summary>
-    /// Invokes method to fill lanes with obstacles and plaforms
+    /// Invokes method to fill lanes with obstacles and platforms
     /// </summary>
     public void FillLanes()
     {
@@ -75,12 +75,16 @@ public class LaneController : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculates lane size from the positions of the left and righ edges of the camera view on the X axis
+    /// Calculates lane size from the positions of the left and right edges of the camera view on the X axis
     /// </summary>
     private void CalculateLaneSize()
     {
-        leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        if (Camera.main != null)
+        {
+            leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
+            rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        }
+
         laneSize = System.Math.Abs(leftEdge.x) + System.Math.Abs(rightEdge.x);
     }
 
@@ -109,28 +113,28 @@ public class LaneController : MonoBehaviour
     }
 
     /// <summary>
-    /// Invokes methods to either create obstaces or platforms depending on the boolean flag
+    /// Invokes methods to either create obstacles or platforms depending on the boolean flag
     /// </summary>
-    public void GenerateObjects(List<GameObject> laneList, int firstLane, int lastLane, bool obstacle)
+    private void GenerateObjects(List<GameObject> laneList, int firstLane, int lastLane, bool obstacle)
     {
-        List<GameObject> objList = laneList;
+        var objList = laneList;
 
         if (obstacle)
         {
             // Loop that goes through each obstacle lane and creates obstacle objects in them
-            for (int i = firstLane; i >= lastLane; i--)
+            for (var i = firstLane; i >= lastLane; i--)
             {
                 Debug.Log("Populating obstacles");
-                PopulateLane(objList, i, obstacle);
+                PopulateLane(objList, i, true);
             }
         }
         else
         {
             // Loop that goes through each platform lane and creates platform objects in them
-            for (int i = firstLane; i <= lastLane; i++)
+            for (var i = firstLane; i <= lastLane; i++)
             {
                 Debug.Log("Populating platforms");
-                PopulateLane(objList, i, obstacle);
+                PopulateLane(objList, i, false);
             }
         }
     }
@@ -153,26 +157,12 @@ public class LaneController : MonoBehaviour
         {
             // Check if obstacle is large or small
             // If obstacle is large then fewer objects are generated
-            if (currObjMoveCycle.size > 1)
-            {
-                lanePop = Random.Range(2, 3);
-            }
-            else
-            {
-                lanePop = Random.Range(2, 5);
-            }
+            lanePop = Random.Range(2, currObjMoveCycle.size > 1 ? 3 : 5);
         } else
         {
             // Check if platform is large
-            // If paltform is large then fewer platforms are generated
-            if (currObjMoveCycle.size >= 6)
-            {
-                lanePop = Random.Range(2, 3);
-            }
-            else
-            {
-                lanePop = Random.Range(3, 4);
-            }
+            // If platform is large then fewer platforms are generated
+            lanePop = currObjMoveCycle.size >= 6 ? Random.Range(2, 3) : Random.Range(3, 4);
         }
 
         CreateObject(lane, currObjMoveCycle.size, lanePop, currObjMoveCycle.direction.x);
@@ -183,10 +173,9 @@ public class LaneController : MonoBehaviour
     /// </summary>
     private void CreateObject(int laneHeight, float objectLength, int objectCount, float moveDirection)
     {
-        float sizeModifier;
-        float maxLaneSize = laneSize + objectLength;
-        sizeModifier = 2;
-        
+        var maxLaneSize = laneSize + objectLength;
+        float sizeModifier = 2;
+
         // Depending on the movement direction start creating objects from the opposite side
         if (moveDirection > 0)
         {

@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,7 +14,7 @@ public class PlayerController : MonoBehaviour
     // Tracks the furthest row the player has reached
     private float farthestRow;
     // Indicates if the player is currently leaping
-    private bool leaping = false;
+    private bool leaping;
     // Tracks if a key was released, used for input handling
     private bool keyReleased = true;
     // The default sprite when the player is idle
@@ -65,7 +64,7 @@ public class PlayerController : MonoBehaviour
     private int score;
     // Bool representing if the player has just captured a home or the game has ended
     private bool won;
-    // Istance of the Player Input
+    // Instance of the Player Input
     PlayerInput playerInput;
     // Action to continue the game after it has ended
     InputAction menuJoin;
@@ -85,7 +84,7 @@ public class PlayerController : MonoBehaviour
     {
         won = false;
 
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -127,7 +126,7 @@ public class PlayerController : MonoBehaviour
             keyReleased = false;
             Rotate(Quaternion.Euler(0f, -180f, 0f));
             Move(Vector3.left);
-        } else if(movementInput.y == 0 && movementInput.x == 0 && !leaping)
+        } else if(movementInput is { y: 0, x: 0 } && !leaping)
         {
             keyReleased = true;
         }
@@ -138,17 +137,17 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void SetSprites()
     {
-        idleSprites = new Sprite[4]
+        idleSprites = new[]
         {
             idleSpriteOne, idleSpriteTwo, idleSpriteThree,idleSpriteFour,
         };
 
-        leapSprites = new Sprite[4]
+        leapSprites = new[]
         {
             leapSpriteOne, leapSpriteTwo, leapSpriteThree, leapSpriteFour,
         };
 
-        deadSprites = new Sprite[4]
+        deadSprites = new[]
         {
             deadSpriteOne, deadSpriteTwo, deadSpriteThree, deadSpriteFour,
         };
@@ -162,9 +161,9 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Set method to set score safely
     /// </summary>
-    public void SetScore(int score)
+    public void SetScore(int newScore)
     {
-        this.score = score;
+        this.score = newScore;
     }
 
     /// <summary>
@@ -195,15 +194,9 @@ public class PlayerController : MonoBehaviour
         }
 
         // check if there is a platform at the destination
-        if (platform != null)
-        {
-            // if there is, then make player a child of the platform so they can move together
-            transform.SetParent(platform.transform);
-        } else
-        {
-            // if the player leaves the platform then disconnect them
-            transform.SetParent(null);
-        }
+        // if the player leaves the platform then disconnect them
+        // if there is, then make player a child of the platform so they can move together
+        transform.SetParent(platform != null ? platform.transform : null);
 
         // if player touches an obstacle while not on a platform then they will die
         if (obstacle != null && platform == null)
@@ -212,11 +205,11 @@ public class PlayerController : MonoBehaviour
             Death();
         } else
         {
-            // if there is no obstacle and the row is the farthest the player has been then set the destination to the farthest row
+            // if there is no obstacle and the row is farthest the player has been then set the destination to the farthest row
             if (destination.y > farthestRow)
             {
                 farthestRow = destination.y;
-                FindObjectOfType<GameManager>().AdvancedRow(this);
+                FindFirstObjectByType<GameManager>().AdvancedRow(this);
             }
 
             // finally, perform the movement
@@ -278,15 +271,15 @@ public class PlayerController : MonoBehaviour
         spriteRenderer.sprite = deadSprite;
         enabled = false;
 
-        FindObjectOfType<GameManager>().Died();
+        FindFirstObjectByType<GameManager>().Died();
     }
 
     /// <summary>
     /// Enable or disables the "won" state for the player
     /// </summary>
-    public void SetWon(bool won)
+    public void SetWon(bool newWonState)
     {
-        this.won = won;
+        this.won = newWonState;
     }
 
     /// <summary>
@@ -315,7 +308,7 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if player's collider box has inersected the collider box of the obstacle
+    /// Checks if player's collider box has intersected the collider box of the obstacle
     /// </summary>
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -330,7 +323,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void ContinueGame()
     {
-        // Check if either "Space" or "Start" have been pressed and the game has eneded
+        // Check if either "Space" or "Start" have been pressed and the game has ended
         if (menuJoin.WasPressedThisFrame() && gameManager.GameEnded())
         {
             gameManager.ContinueGame();

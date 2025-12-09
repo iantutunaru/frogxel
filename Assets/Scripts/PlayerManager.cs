@@ -40,9 +40,9 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public void OnPlayerJoined(PlayerInput playerInput)
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindFirstObjectByType<GameManager>();
 
-        PlayerController frogger = playerInput.GetComponent<PlayerController>();
+        var frogger = playerInput.GetComponent<PlayerController>();
 
         gameManager.OnPlayerJoined(frogger);
     }

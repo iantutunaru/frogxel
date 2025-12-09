@@ -30,11 +30,10 @@ public class Home : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // if player touches the home base then inform Game Manager
-        if (other.tag == "Player")
-        {
-            enabled = true;
+        if (!other.CompareTag("Player")) return;
+        
+        enabled = true;
 
-            FindObjectOfType<GameManager>().HomeOccupied(other.GetComponent<PlayerController>());
-        }
+        FindFirstObjectByType<GameManager>().HomeOccupied(other.GetComponent<PlayerController>());
     }
 }
