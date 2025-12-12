@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 namespace Managers
@@ -23,7 +24,7 @@ namespace Managers
         /// </summary>
         public void SetScore(PlayerController player, int score)
         {
-            player.SetScore(score);
+            player.GetPlayerStats().SetScore(score);
         
             uiManager.SetPlayerScore(player, score);
         }
@@ -41,7 +42,7 @@ namespace Managers
         /// </summary>
         public void GivePointsForAdvancing(PlayerController player)
         {
-            SetScore(player, player.GetScore() + scoreForAdvancingRow);
+            SetScore(player, player.GetPlayerStats().GetScore() + scoreForAdvancingRow);
         }
         
         /// <summary>
@@ -56,9 +57,9 @@ namespace Managers
             for (var i = 0; i < playerManager.GetPlayers().Count; i++)
             {
                 // Find the highest score by comparing each score and store the number of the player with the highest score
-                if (playerManager.GetPlayers()[i].GetScore() > highestScore)
+                if (playerManager.GetPlayers()[i].GetPlayerStats().GetScore() > highestScore)
                 {
-                    highestScore = playerManager.GetPlayers()[i].GetScore();
+                    highestScore = playerManager.GetPlayers()[i].GetPlayerStats().GetScore();
                     position = i;
                 }
             }
