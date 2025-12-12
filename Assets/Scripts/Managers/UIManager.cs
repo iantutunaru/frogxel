@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,7 +57,7 @@ namespace Managers
         public void DisplayHighestScore()
         {
             gameWonText.text = $"PLAYER {scoreManager.GetHighestScorePlayerPosition() + 1} WON! " + 
-                        $"SCORE: {playerManager.GetPlayers()[scoreManager.GetHighestScorePlayerPosition()].GetScore()}";
+                $"SCORE: {playerManager.GetPlayers()[scoreManager.GetHighestScorePlayerPosition()].GetPlayerStats().GetScore()}";
             
             gameWonText.enabled = true;
             

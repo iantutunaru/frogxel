@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2722423850587376373}
   - component: {fileID: 94172798321471140}
   - component: {fileID: 8318568588062286041}
+  - component: {fileID: 269813779719195574}
+  - component: {fileID: 4244778862769310969}
   - component: {fileID: 5801645345563342835}
   m_Layer: 3
   m_Name: Frogger
@@ -84,7 +86,6 @@ SpriteRenderer:
   m_SortingLayerID: -1139823569
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_MaskInteraction: 0
   m_Sprite: {fileID: 174954862, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,6 +95,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &2722423850587376373
 BoxCollider2D:
@@ -103,7 +105,6 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2550624890036588288}
   m_Enabled: 1
-  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -139,6 +140,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
+  serializedVersion: 3
   m_Size: {x: 0.6, y: 0.7}
   m_EdgeRadius: 0
 --- !u!50 &94172798321471140
@@ -180,24 +182,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af44d23b7bae8b49b7cd3fa0678669f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idleSprite: {fileID: 174954862, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
-  idleSpriteOne: {fileID: 174954862, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
-  idleSpriteTwo: {fileID: -2026171429, guid: 494b605180e4f294485b3ce53297b0b6, type: 3}
-  idleSpriteThree: {fileID: -1050984767, guid: 43535d4fd80c95f4bb9277be976b0f2f, type: 3}
-  idleSpriteFour: {fileID: 290052264, guid: 1145de6290577704ea79b45d1c6c6d49, type: 3}
-  idleSprites: []
-  leapSprite: {fileID: -1147713935, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
-  leapSpriteOne: {fileID: -1147713935, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
-  leapSpriteTwo: {fileID: -972323472, guid: 494b605180e4f294485b3ce53297b0b6, type: 3}
-  leapSpriteThree: {fileID: 1834814716, guid: 43535d4fd80c95f4bb9277be976b0f2f, type: 3}
-  leapSpriteFour: {fileID: 630786811, guid: 1145de6290577704ea79b45d1c6c6d49, type: 3}
-  leapSprites: []
-  deadSprite: {fileID: -1042197351, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
-  deadSpriteOne: {fileID: -1042197351, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
-  deadSpriteTwo: {fileID: -546521834, guid: 494b605180e4f294485b3ce53297b0b6, type: 3}
-  deadSpriteThree: {fileID: 74221714, guid: 43535d4fd80c95f4bb9277be976b0f2f, type: 3}
-  deadSpriteFour: {fileID: -1265906268, guid: 1145de6290577704ea79b45d1c6c6d49, type: 3}
-  deadSprites: []
+  playerInput: {fileID: 5801645345563342835}
+  playerStats: {fileID: 269813779719195574}
+  playerAnimator: {fileID: 4244778862769310969}
+  maxLeapDuration: 0.125
+--- !u!114 &269813779719195574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550624890036588288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9601e54dcd692c14aab1cd71da01aad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerStats
+--- !u!114 &4244778862769310969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550624890036588288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e143b8c6024c604488722f1ff01157db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerAnimator
+  spriteRenderer: {fileID: 1256451714766656399}
+  idleSprites:
+  - {fileID: 174954862, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
+  - {fileID: -1050984767, guid: 43535d4fd80c95f4bb9277be976b0f2f, type: 3}
+  - {fileID: 290052264, guid: 1145de6290577704ea79b45d1c6c6d49, type: 3}
+  - {fileID: -2026171429, guid: 494b605180e4f294485b3ce53297b0b6, type: 3}
+  leapSprites:
+  - {fileID: -1147713935, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
+  - {fileID: 1834814716, guid: 43535d4fd80c95f4bb9277be976b0f2f, type: 3}
+  - {fileID: 630786811, guid: 1145de6290577704ea79b45d1c6c6d49, type: 3}
+  - {fileID: -972323472, guid: 494b605180e4f294485b3ce53297b0b6, type: 3}
+  deadSprites:
+  - {fileID: -1042197351, guid: 4325aa1d6755d234dba066a7d7fa9816, type: 3}
+  - {fileID: 74221714, guid: 43535d4fd80c95f4bb9277be976b0f2f, type: 3}
+  - {fileID: -1265906268, guid: 1145de6290577704ea79b45d1c6c6d49, type: 3}
+  - {fileID: -546521834, guid: 494b605180e4f294485b3ce53297b0b6, type: 3}
+  playerController: {fileID: 8318568588062286041}
 --- !u!114 &5801645345563342835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +267,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 69d89b0d-9bcd-4dbe-b3f3-07b1c435f53f
-    m_ActionName: 'Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8318568588062286041}
@@ -254,39 +283,39 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 260d6379-b086-4097-aca4-ff326fcea439
-    m_ActionName: 'Player/MenuJoin[/Keyboard/space]'
+    m_ActionName: Player/MenuJoin[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: d76867c5-b9a5-42ce-ad20-02acffba72b8
-    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: bfe23670-213d-4bd2-bd04-633b178017e0
-    m_ActionName: 'UI/Submit[/Keyboard/enter]'
+    m_ActionName: UI/Submit[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 6fea4b64-1807-4521-811d-df5f23a91c71
-    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
+    m_ActionName: UI/Cancel[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 453e5fc6-e734-4d8e-9761-8d2803a8a186
-    m_ActionName: 'UI/Point[/Mouse/position]'
+    m_ActionName: UI/Point[/Mouse/position]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: b25ac7ce-a3c7-4968-8b25-35442b4d0be9
-    m_ActionName: 'UI/Click[/Mouse/leftButton]'
+    m_ActionName: UI/Click[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 1f35b25c-1c14-4abe-898e-192bd7f865c2
-    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 239692e2-fd70-43d7-9e54-9f1862c65f0b
-    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: bcd74d4d-fdae-42ba-a15c-9a202b0ae203
-    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: fc686946-1cd2-457b-8df4-9d4e31b9e326
