@@ -1,5 +1,7 @@
 using System.Linq;
+using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
@@ -10,7 +12,9 @@ namespace Managers
         
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private GameManager gameManager;
-        
+
+        [SerializeField] private int pointsForCapturingPoint = 500;
+        [SerializeField] private int pointsForCapturingLastPoint = 1000;
         public Home[] GetCapturePoints() { return capturePoints; }
         
         /// <summary>
@@ -21,12 +25,12 @@ namespace Managers
         {
             player.SetWon(true);
 
-            scoreManager.SetScore(player, player.GetScore() + 500);
+            scoreManager.SetScore(player, player.GetPlayerStats().GetScore() + pointsForCapturingPoint);
 
             // Check if all homes have been captured
             if (Cleared())
             {
-                scoreManager.SetScore(player, player.GetScore() + 1000);
+                scoreManager.SetScore(player, player.GetPlayerStats().GetScore() + pointsForCapturingLastPoint);
                 StopAllCoroutines();
                 Invoke(nameof(AllBasesCaptured), 1f);
             }
