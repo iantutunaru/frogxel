@@ -17,7 +17,7 @@ MonoBehaviour:
   <Height>k__BackingField: 1
   <MoveDirection>k__BackingField: {x: -1, y: 0}
   <MoveSpeed>k__BackingField: 1
-  <GapWidth>k__BackingField: 2
+  <GapWidth>k__BackingField: 6
   <Sprite>k__BackingField: {fileID: 326219343, guid: a1ab6b3a4a624a849a3f6a601187b03b, type: 3}
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: 835ff6da893ae784da532b3a4cfa9609, type: 2}
   <Count>k__BackingField: 2
