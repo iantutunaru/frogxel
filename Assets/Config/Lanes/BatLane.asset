@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3d374fe3814084ba23b8a18275aec8, type: 3}
+  m_Name: BatLane
+  m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.MovingObstaclesLaneConfig
+  <Prefab>k__BackingField: {fileID: 3797604880175944821, guid: 0a43d02c151cfe4439a316de6354e33d, type: 3}
+  <Background>k__BackingField: {fileID: -1683239671, guid: 8625a42af4147f64e84bb985187ce27c, type: 3}
+  <Height>k__BackingField: 1
+  <MoveDirection>k__BackingField: {x: -1, y: 0}
+  <MoveSpeed>k__BackingField: 2
+  <GapWidth>k__BackingField: 2
+  <Sprite>k__BackingField: {fileID: -69125046, guid: 9a0b133457865b841a9c0d213dcd50df, type: 3}
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 121ce0e0acca59f47b11552a4ca8a560, type: 2}
+  <Count>k__BackingField: 1
