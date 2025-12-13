@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &18654798044950619
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1771139228539148903, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7289142730158139358, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      propertyPath: m_Name
+      value: MovingObstaclesLane
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3692137491550301121, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7289142730158139358, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3797604880175944821}
+  m_SourcePrefab: {fileID: 100100000, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+--- !u!212 &3494502524608335085 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3475848694072294582, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+  m_PrefabInstance: {fileID: 18654798044950619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7307788315495831429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7289142730158139358, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
+  m_PrefabInstance: {fileID: 18654798044950619}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3797604880175944821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7307788315495831429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fcc1cc7c95a46c585cc7422955e9976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.MovingObstaclesLaneController
+  background: {fileID: 3494502524608335085}
+  obstaclePrefab: {fileID: 6350009540312952069, guid: d9b50cacf814cf34d9eb40d8b3e803ff, type: 3}

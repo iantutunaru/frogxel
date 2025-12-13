@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c582347636c544c88bda78bfb476f4bd, type: 3}
   m_Name: Lanes
   m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.LanesConfig
-  <LaneWidth>k__BackingField: 16
+  <LaneWidth>k__BackingField: 13
   <Lanes>k__BackingField:
   - {fileID: 11400000, guid: 0a52b037e0ec2ab4a91b6e6e515f2685, type: 2}
+  - {fileID: 11400000, guid: 08a48b1fc16c57644afbdcaeb7997bde, type: 2}
   - {fileID: 11400000, guid: 09211801f4b4dd24fb685029ecf9e382, type: 2}
   - {fileID: 11400000, guid: 468d45262aea5684399014e7e711e84a, type: 2}
   - {fileID: 11400000, guid: 624eae8bb519c324c9c8079c33b01f26, type: 2}

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.LaneConfig
   <Prefab>k__BackingField: {fileID: 3692137491550301121, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
   <Background>k__BackingField: {fileID: -1683239671, guid: 8625a42af4147f64e84bb985187ce27c, type: 3}
-  <Height>k__BackingField: 5
+  <Height>k__BackingField: 4
