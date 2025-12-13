@@ -4,10 +4,10 @@ namespace Frogxel.Lanes
 {
     public class LaneController : MonoBehaviour
     {
-        [Header("Background")]
+        [Header("Lane")]
         [SerializeField] private SpriteRenderer background;
 
-        public void Init(LaneConfig laneConfig, int width)
+        public virtual void Init(LaneConfig laneConfig, int width)
         {
             background.sprite = laneConfig.Background;
             background.drawMode = SpriteDrawMode.Tiled;
