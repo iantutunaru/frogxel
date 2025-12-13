@@ -1,4 +1,5 @@
 using System.Collections;
+using Frogxel.Lanes;
 using UnityEngine;
 
 namespace Managers
@@ -8,8 +9,7 @@ namespace Managers
     /// </summary>
     public class GameManager : MonoBehaviour
     {
-        // Instance of the Lane Controller
-        [SerializeField] private LaneController laneController;
+        [SerializeField] private LanesController lanesController;
         
         [Header("Managers")]
         [SerializeField] private PlayerManager playerManager;
@@ -25,8 +25,7 @@ namespace Managers
         public void NewGame()
         {
             pauseManager.UnpauseGame();
-            
-            laneController.EndGame();
+            lanesController.Clear();
             
             // If there are players in the game
             if (playerManager.GetPlayers().Count > 0)
@@ -34,7 +33,7 @@ namespace Managers
                 scoreManager.ResetPlayerScore();
             }
 
-            laneController.FillLanes();
+            lanesController.Init();
 
             NewLevel();
         }
