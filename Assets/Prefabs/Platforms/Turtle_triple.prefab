@@ -50,6 +50,8 @@ MonoBehaviour:
   direction: {x: -1, y: 0}
   speed: 3
   size: 3
+  leftEdge: {x: -7, y: 0, z: 0}
+  rightEdge: {x: 7, y: 0, z: 0}
 --- !u!1001 &1681737317071134361
 PrefabInstance:
   m_ObjectHideFlags: 0

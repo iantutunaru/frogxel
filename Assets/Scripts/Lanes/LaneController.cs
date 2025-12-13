@@ -59,9 +59,9 @@ public class LaneController : MonoBehaviour
     // Instance of the unique game object that is used to populate the lanes
     private readonly List<GameObject> instantObj = new();
     // Vector representative of the left screen border
-    private Vector3 leftEdge;
+    [SerializeField] private Vector3 leftEdge;
     // Vector representative of the right screen border
-    private Vector3 rightEdge;
+    [SerializeField] private Vector3 rightEdge;
 
     /// <summary>
     /// Invokes method to fill lanes with obstacles and platforms
@@ -79,12 +79,6 @@ public class LaneController : MonoBehaviour
     /// </summary>
     private void CalculateLaneSize()
     {
-        if (Camera.main != null)
-        {
-            leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-            rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-        }
-
         laneSize = System.Math.Abs(leftEdge.x) + System.Math.Abs(rightEdge.x);
     }
 

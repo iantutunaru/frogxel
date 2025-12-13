@@ -12,22 +12,11 @@ public class MoveCycle : MonoBehaviour
     // Size of the object
     public int size = 1;
     // Left screen border
-    private Vector3 leftEdge;
+    [SerializeField] private Vector3 leftEdge;
     // Right screen border
-    private Vector3 rightEdge;
+    [SerializeField] private Vector3 rightEdge;
     // Modifier to used to find center of the object
     private float sizeModifier = 2;
-
-    /// <summary>
-    /// Initialize and find edges on the start of the game
-    /// </summary>
-    private void Start()
-    {
-        if (Camera.main == null) return;
-        
-        leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
-    }
 
     /// <summary>
     /// Move the object either to the left or right and if the object reaches an edge then move it to the opposite edge
