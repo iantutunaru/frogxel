@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9964f0106342472c922a64e9cd7aa860, type: 3}
-  m_Name: MiddleLane
+  m_Name: GrassLane
   m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.LaneConfig
   <Prefab>k__BackingField: {fileID: 3692137491550301121, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
   <Background>k__BackingField: {fileID: -1112944313, guid: 8625a42af4147f64e84bb985187ce27c, type: 3}
