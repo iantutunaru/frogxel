@@ -1,5 +1,4 @@
-﻿using UnityEditor.Animations;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Frogxel.Lanes
 {
@@ -8,7 +7,7 @@ namespace Frogxel.Lanes
     {
         [field: Header("Moving Obstacles Lane")]
         [field: SerializeField] public Sprite Sprite { get; private set; }
-        [field: SerializeField] public AnimatorController AnimatorController { get; private set; }
+        [field: SerializeField] public RuntimeAnimatorController AnimatorController { get; private set; }
         [field: SerializeField] public int Count { get; private set; }
     }
 }

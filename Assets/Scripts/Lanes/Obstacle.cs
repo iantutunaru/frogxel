@@ -1,5 +1,4 @@
-﻿using UnityEditor.Animations;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Frogxel.Lanes
 {
@@ -16,7 +15,7 @@ namespace Frogxel.Lanes
             spriteRenderer.flipX = flipX;
         }
         
-        public void TrySetAnimatorController(AnimatorController animatorController)
+        public void TrySetAnimatorController(RuntimeAnimatorController animatorController)
         {
             if (animatorController == null)
             {
