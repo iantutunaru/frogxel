@@ -74,7 +74,7 @@ namespace Player
             
             Debug.Log("Controller: Player Index: " + playerIndex);
             
-            playerAnimator.Init(playerIndex);
+            //playerAnimator.Init(playerIndex);
         }
         
         private void Update()
@@ -84,17 +84,19 @@ namespace Player
 
         private void ChoseMoveDirection()
         {
+            Debug.Log("Movement Input: " + movementInput);
+            
             switch (movementInput.y)
             {
                 case > 0 when !leaping && keyReleased && !won:
                     keyReleased = false;
-                    
+                    Rotate(Quaternion.Euler(-90f, 0f, 0f));
                     Move(Vector3.up);
                     
                     break;
                 case < 0 when !leaping && keyReleased && !won:
                     keyReleased = false;
-                    
+                    Rotate(Quaternion.Euler(90f, 0f, 180f));
                     Move(Vector3.down);
                     
                     break;
@@ -105,14 +107,14 @@ namespace Player
                         case > 0 when !leaping && keyReleased && !won:
                             keyReleased = false;
                             
-                            Rotate(Quaternion.Euler(0f, 0f, 0f));
+                            Rotate(Quaternion.Euler(0f, 90f, -90f));
                             Move(Vector3.right);
                             
                             break;
                         case < 0 when !leaping && keyReleased && !won:
                             keyReleased = false;
                             
-                            Rotate(Quaternion.Euler(0f, -180f, 0f));
+                            Rotate(Quaternion.Euler(0f, -90f, 90f));
                             Move(Vector3.left);
                             
                             break;
@@ -134,6 +136,8 @@ namespace Player
         
         private void Move(Vector3 direction)
         {
+            Debug.Log("Move: " + direction);
+            
             var destination = transform.position + direction;
 
             var barrier = Physics2D.OverlapBox(destination, Vector2.zero, 0f, 
@@ -208,7 +212,7 @@ namespace Player
         {
             StopAllCoroutines();
 
-            transform.rotation = Quaternion.identity;
+            //transform.rotation = Quaternion.identity;
             
             playerAnimator.SetDeadSprite();
 
@@ -232,7 +236,7 @@ namespace Player
             StopAllCoroutines();
             
             leaping = false;
-            transform.rotation = Quaternion.identity;
+            Rotate(Quaternion.Euler(-90f, 0f, 0f));
             transform.position = spawnPosition;
             farthestRow = spawnPosition.y;
             
@@ -241,6 +245,8 @@ namespace Player
             
             won = false;
             enabled = true;
+            
+            playerAnimator.ResetAnimator();
         }
         
         private void OnTriggerEnter2D(Collider2D other)
