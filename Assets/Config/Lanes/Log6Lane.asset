@@ -17,6 +17,6 @@ MonoBehaviour:
   <Height>k__BackingField: 1
   <MoveablePrefab>k__BackingField: {fileID: 8994572422384346459, guid: 6b1b8dbbfb76da04fb957513ea565a58, type: 3}
   <MoveDirection>k__BackingField: {x: 1, y: 0}
-  <MoveSpeed>k__BackingField: 1
+  <MoveSpeed>k__BackingField: 3
   <GapWidth>k__BackingField: 5
   <Layer>k__BackingField: Obstacle
