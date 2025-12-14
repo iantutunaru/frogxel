@@ -24,6 +24,7 @@ namespace Managers
         /// </summary>
         public void NewGame()
         {
+            uiManager.NewGame();
             pauseManager.UnpauseGame();
             lanesController.Clear();
             

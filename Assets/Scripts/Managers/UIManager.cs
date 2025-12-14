@@ -6,7 +6,7 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         // GameObject containing title, title background and title text
-        public GameObject startMenu;
+        [SerializeField] private GameObject startMenu;
     
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private ScoreManager scoreManager;
@@ -17,35 +17,18 @@ namespace Managers
         // Text object that is used to display the victor's number and score
         [SerializeField] private Text gameWonText;
         [SerializeField] private GameObject gameOverMenu;
-
-        private void Awake()
-        {
-            Init();
-        }
         
-        private void Init()
+        public void NewGame()
         {
-            // Disable score if they are enabled
-            foreach (var score in scores)
-            {
-                score.enabled = false;
-            }
-            
-            gameWonText.enabled = false;
-            playAgainText.enabled = false;
-            
-            gameOverMenu.SetActive(false);
-            startMenu.SetActive(true);
-        }
-        
-        public void TurnOffStartMenu()
-        {
+            gameWonText.gameObject.SetActive(false);
+            playAgainText.gameObject.SetActive(false);
             startMenu.SetActive(false);
+            gameOverMenu.SetActive(false);
         }
 
         public void EnablePlayerScore(PlayerController player)
         {
-            scores[playerManager.GetPlayers().IndexOf(player)].enabled = true;
+            scores[playerManager.GetPlayers().IndexOf(player)].gameObject.SetActive(true);
         }
 
         public void SetPlayerScore(PlayerController player, int score)
@@ -58,7 +41,7 @@ namespace Managers
             gameWonText.text = $"PLAYER {scoreManager.GetHighestScorePlayerPosition() + 1} WON! " + 
                         $"SCORE: {playerManager.GetPlayers()[scoreManager.GetHighestScorePlayerPosition()].GetScore()}";
             
-            gameWonText.enabled = true;
+            gameWonText.gameObject.SetActive(true);
             
             DisplayPlayAgainText();
         }
@@ -72,7 +55,7 @@ namespace Managers
 
         private void DisplayPlayAgainText()
         {
-            playAgainText.enabled = true;
+            playAgainText.gameObject.SetActive(true);
         }
     }
 }
