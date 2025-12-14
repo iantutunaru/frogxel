@@ -21,7 +21,7 @@ namespace Frogxel.Lanes
 
             if (isMovingRight)
             {
-                if (currentPosX >= maxPosX - halfWidth)
+                if (currentPosX - halfWidth >= maxPosX)
                 {
                     transform.position = new Vector2(minResetPosX - halfWidth, currentPosY);
                 }
@@ -29,7 +29,7 @@ namespace Frogxel.Lanes
                 return;
             }
             
-            if (currentPosX > minPosX + halfWidth)
+            if (currentPosX + halfWidth > minPosX)
             {
                 return;
             }
