@@ -44,7 +44,7 @@ namespace Frogxel.Lanes
             var currentPosition = transform.position;
             var currentPosX = currentPosition.x;
             var currentPosY = currentPosition.y;
-            var isMovingRight = moveDirection.x > 0;
+            var isMovingRight = IsMovingRight(moveDirection);
             var width = GetObstacleGroupWidth(_obstacles.Count);
             var halfWidth = width / 2f;
 
@@ -75,13 +75,19 @@ namespace Frogxel.Lanes
 
             return 0 - ObstacleWidth / 2f * (totalObstacles - 1);
         }
+
+        private static bool IsMovingRight(Vector2 moveDirection)
+        {
+            return moveDirection.x > 0;
+        }
         
         private Obstacle CreateObstacle(MovingObstaclesLaneConfig movingObstaclesLaneConfig, Transform parent)
         {
             // TODO: Replace with object pooling
             var obstacle = Instantiate(obstaclePrefab, parent);
+            var flipX = !IsMovingRight(movingObstaclesLaneConfig.MoveDirection);
             
-            obstacle.SetSprite(movingObstaclesLaneConfig.Sprite);
+            obstacle.SetSprite(movingObstaclesLaneConfig.Sprite, flipX);
             obstacle.TrySetAnimatorController(movingObstaclesLaneConfig.AnimatorController);
 
             return obstacle;

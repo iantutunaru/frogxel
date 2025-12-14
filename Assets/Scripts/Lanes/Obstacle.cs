@@ -8,9 +8,10 @@ namespace Frogxel.Lanes
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Animator animator;
 
-        public void SetSprite(Sprite sprite)
+        public void SetSprite(Sprite sprite, bool flipX)
         {
             spriteRenderer.sprite = sprite;
+            spriteRenderer.flipX = flipX;
         }
         
         public void TrySetAnimatorController(AnimatorController animatorController)
