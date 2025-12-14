@@ -11,6 +11,11 @@ namespace Frogxel.Lanes
 
         private readonly List<Obstacle> _obstacles = new();
 
+        public static int GetObstacleGroupWidth(int totalObstacles)
+        {
+            return totalObstacles * ObstacleWidth;
+        }
+
         public void Init(MovingObstaclesLaneConfig movingObstaclesLaneConfig)
         {
             var totalObstacles = movingObstaclesLaneConfig.Count;
@@ -26,6 +31,39 @@ namespace Frogxel.Lanes
                 
                 _obstacles.Add(obstacle);
             }
+        }
+
+        public void Move(Vector2 direction, float moveSpeed)
+        {
+            transform.Translate(direction * (moveSpeed * Time.deltaTime));
+        }
+
+        public void TryResetPosition(Vector2 moveDirection, float minResetPosX, float maxResetPosX, float minPosX,
+            float maxPosX)
+        {
+            var currentPosition = transform.position;
+            var currentPosX = currentPosition.x;
+            var currentPosY = currentPosition.y;
+            var isMovingRight = moveDirection.x > 0;
+            var width = GetObstacleGroupWidth(_obstacles.Count);
+            var halfWidth = width / 2f;
+
+            if (isMovingRight)
+            {
+                if (currentPosX >= maxPosX - halfWidth)
+                {
+                    transform.position = new Vector2(minResetPosX - halfWidth, currentPosY);
+                }
+                
+                return;
+            }
+            
+            if (currentPosX > minPosX + halfWidth)
+            {
+                return;
+            }
+            
+            transform.position = new Vector2(maxResetPosX + halfWidth, currentPosY);
         }
         
         private static float GetStartingObstaclePositionX(int totalObstacles)
