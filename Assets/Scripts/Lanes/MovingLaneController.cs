@@ -9,10 +9,8 @@ namespace Frogxel.Lanes
         private readonly List<Moveable> _moveableObjects = new();
         private Vector2 _moveDirection;
         private float _moveSpeed;
-        private float _minPosX;
-        private float _maxPosX;
-        private float _resetMinPosX;
-        private float _resetMaxPosX;
+        private Vector2 _firstObjectPos;
+        private Vector2 _lastObjectPos;
         
         public override void Init(LaneConfig laneConfig, int width)
         {
@@ -23,16 +21,11 @@ namespace Frogxel.Lanes
                 throw new Exception("Lane config is not a MovingLaneConfig");
             }
             
-            var gapWidth = movingLaneConfig.GapWidth;
-            
             _moveDirection = movingLaneConfig.MoveDirection;
             _moveSpeed = movingLaneConfig.MoveSpeed;
-            _resetMinPosX = transform.position.x - width / 2f;
-            _resetMaxPosX = transform.position.x + width / 2f;
-            _minPosX = _resetMinPosX - gapWidth;
-            _maxPosX = _resetMaxPosX + gapWidth;
             
-            CreateObstacles(movingLaneConfig, width);
+            SetFirstObjectPosition(movingLaneConfig, width);
+            CreateObjects(movingLaneConfig, width);
         }
 
         protected virtual int GetMoveableWidth(MovingLaneConfig config)
@@ -44,33 +37,24 @@ namespace Frogxel.Lanes
         {
         }
 
-        private void CreateObstacles(MovingLaneConfig movingObstaclesLaneConfig, int width)
+        private void CreateObjects(MovingLaneConfig config, int width)
         {
-            var gapWidth = movingObstaclesLaneConfig.GapWidth;
-            var moveableWidth = GetMoveableWidth(movingObstaclesLaneConfig);
-            var totalSpacePerMoveable = moveableWidth + gapWidth;
+            var currentObjectPosition = _firstObjectPos;
 
-            if (width < totalSpacePerMoveable)
+            while (IsObjectPositionValid(currentObjectPosition, config, width))
             {
-                throw new Exception($"Not enough space to create moving objects. Need at least {totalSpacePerMoveable}, but only have {width}");
-            }
-            
-            var totalMovingObjects = Mathf.CeilToInt(width * 1f / totalSpacePerMoveable);
-            var moveablePosX = 0 - width / 2f + moveableWidth / 2f;
-            var spaceBetweenObjects = moveableWidth + gapWidth;
-            
-            for (var i = 0; i < totalMovingObjects; i++)
-            {
-                var moveable = Instantiate(movingObstaclesLaneConfig.MoveablePrefab, transform, false);
-                
-                moveable.transform.localPosition = new Vector3(moveablePosX, 0, 0);
-                
-                moveablePosX += spaceBetweenObjects;
+                var moveable = Instantiate(config.MoveablePrefab, transform, false);
 
-                HandleMoveableInstantiation(moveable, movingObstaclesLaneConfig);
+                moveable.transform.localPosition = currentObjectPosition;
+                
+                HandleMoveableInstantiation(moveable, config);
                 
                 _moveableObjects.Add(moveable);
+                
+                currentObjectPosition = GetNextObjectPosition(currentObjectPosition, config);
             }
+            
+            _lastObjectPos = currentObjectPosition;
         }
         
         private void Update()
@@ -88,8 +72,60 @@ namespace Frogxel.Lanes
             foreach (var moveable in _moveableObjects)
             {
                 moveable.Move(_moveDirection, _moveSpeed);
-                moveable.TryResetPosition(_moveDirection, _resetMinPosX, _resetMaxPosX, _minPosX, _maxPosX);
+                moveable.TryResetPosition(_moveDirection, _firstObjectPos, _lastObjectPos);
             }
+        }
+
+        private void SetFirstObjectPosition(MovingLaneConfig config, int laneWidth)
+        {
+            var laneCentrePosX = transform.position.x;
+            var halfLaneWidth = laneWidth / 2f;
+            var moveableWidth = GetMoveableWidth(config);
+            var halfMoveableWidth = moveableWidth / 2f;
+
+            if (config.MoveDirection.x > 0)
+            {
+                var minLanePosX = laneCentrePosX - halfLaneWidth;
+                
+                _firstObjectPos = new Vector2(minLanePosX - halfMoveableWidth, 0);
+                
+                return;
+            }
+            
+            var maxLanePosX = laneCentrePosX + halfLaneWidth;
+            
+            _firstObjectPos = new Vector2(maxLanePosX + halfMoveableWidth, 0);
+        }
+
+        private Vector2 GetNextObjectPosition(Vector2 previousObjectPos, MovingLaneConfig config)
+        {
+            var previousObjectPosX = previousObjectPos.x;
+            var moveableWidth = GetMoveableWidth(config);
+            var gapWidth = config.GapWidth;
+
+            if (config.MoveDirection.x > 0)
+            {
+                return new Vector2(previousObjectPosX + moveableWidth + gapWidth, previousObjectPos.y);
+            }
+            
+            return new Vector2(previousObjectPosX - moveableWidth - gapWidth, previousObjectPos.y);
+        }
+
+        private bool IsObjectPositionValid(Vector2 position, MovingLaneConfig config, int laneWidth)
+        {
+            var laneCentrePosX = transform.position.x;
+            var halfLaneWidth = laneWidth / 2f;
+            
+            if (config.MoveDirection.x > 0)
+            {
+                var maxLanePosX = laneCentrePosX + halfLaneWidth;
+
+                return position.x <= maxLanePosX;
+            }
+            
+            var minLanePosX = laneCentrePosX - halfLaneWidth;
+            
+            return position.x >= minLanePosX;
         }
     }
 }

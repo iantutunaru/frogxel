@@ -9,42 +9,29 @@ namespace Frogxel.Lanes
             transform.Translate(direction * (moveSpeed * Time.deltaTime));
         }
 
-        public void TryResetPosition(Vector2 moveDirection, float minResetPosX, float maxResetPosX, float minPosX,
-            float maxPosX)
+        public void TryResetPosition(Vector2 moveDirection, Vector2 firstObjectPosition, Vector2 lastObjectPosition)
         {
-            var currentPosition = transform.position;
+            var currentPosition = transform.localPosition;
             var currentPosX = currentPosition.x;
-            var currentPosY = currentPosition.y;
-            var isMovingRight = IsMovingRight(moveDirection);
-            var width = GetWidth();
-            var halfWidth = width / 2f;
+            var isMovingRight = moveDirection.x > 0;
+            var lastObjectPosX = lastObjectPosition.x;
 
             if (isMovingRight)
             {
-                if (currentPosX - halfWidth >= maxPosX)
+                if (currentPosX > lastObjectPosX)
                 {
-                    transform.position = new Vector2(minResetPosX - halfWidth, currentPosY);
+                    transform.localPosition = firstObjectPosition;
                 }
                 
                 return;
             }
             
-            if (currentPosX + halfWidth > minPosX)
+            if (currentPosX >= lastObjectPosX)
             {
                 return;
             }
             
-            transform.position = new Vector2(maxResetPosX + halfWidth, currentPosY);
-        }
-
-        protected virtual int GetWidth()
-        {
-            return 0;
-        }
-
-        private static bool IsMovingRight(Vector2 moveDirection)
-        {
-            return moveDirection.x > 0;
+            transform.localPosition = firstObjectPosition;
         }
     }
 }

@@ -26,11 +26,6 @@ namespace Frogxel.Lanes
             }
         }
         
-        protected override int GetWidth()
-        {
-            return _obstacles.Count * Obstacle.Width;
-        }
-        
         private static float GetStartingObstaclePositionX(int totalObstacles)
         {
             if (totalObstacles <= 1)
