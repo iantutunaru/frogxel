@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5853103733342015204}
   - component: {fileID: 305511752078859989}
   m_Layer: 8
-  m_Name: Turtle
+  m_Name: Piranha_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

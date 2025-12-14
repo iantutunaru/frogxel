@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7289142730158139358, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
       propertyPath: m_Name
-      value: ObstacleLane
+      value: MovingPlatformLane
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3692137491550301121, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
@@ -62,7 +62,7 @@ PrefabInstance:
       addedObject: {fileID: 6613511288875596865}
     - targetCorrespondingSourceObject: {fileID: 7289142730158139358, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1457392993347602215}
+      addedObject: {fileID: 4403077281519051554}
   m_SourcePrefab: {fileID: 100100000, guid: a82900cd45447ef40ad0dc114f3a9fed, type: 3}
 --- !u!1 &3307921434394144847 stripped
 GameObject:
@@ -115,7 +115,7 @@ BoxCollider2D:
   m_AutoTiling: 1
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1457392993347602215
+--- !u!114 &4403077281519051554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,9 +124,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3307921434394144847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ff9ee2012b4f8d892a132fffeb664e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dce55ce2e6545bf88cf7107548b263d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.ObstacleLaneController
+  m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.MovingPlatformLaneController
   background: {fileID: 8718006039714982695}
 --- !u!212 &8718006039714982695 stripped
 SpriteRenderer:
