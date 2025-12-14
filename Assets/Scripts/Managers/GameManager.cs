@@ -1,5 +1,6 @@
 using System.Collections;
 using Frogxel.Lanes;
+using Player;
 using UnityEngine;
 
 namespace Managers

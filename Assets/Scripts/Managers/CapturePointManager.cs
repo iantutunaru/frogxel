@@ -2,14 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Frogxel.Lanes;
+using Player;
 using UnityEngine;
 
 namespace Managers
 {
     public class CapturePointManager : MonoBehaviour
     {
+        [Header("Managers")]
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private GameManager gameManager;
+
+        [Header("Score points")] 
+        [SerializeField] private int pointsForCapturing = 500;
+        [SerializeField] private int pointsForCapturingLastPoint = 1000;
         
         private List<CapturePoint> _capturePoints = new();
         
@@ -70,12 +76,12 @@ namespace Managers
         {
             player.SetWon(true);
 
-            scoreManager.SetScore(player, player.GetScore() + 500);
+            scoreManager.SetScore(player, player.GetPlayerStats().GetScore() + pointsForCapturing);
 
             // Check if all homes have been captured
             if (Cleared())
             {
-                scoreManager.SetScore(player, player.GetScore() + 1000);
+                scoreManager.SetScore(player, player.GetPlayerStats().GetScore() + pointsForCapturingLastPoint);
                 StopAllCoroutines();
                 Invoke(nameof(AllBasesCaptured), 1f);
             }
