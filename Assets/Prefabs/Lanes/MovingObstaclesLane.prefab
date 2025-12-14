@@ -84,4 +84,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.MovingObstaclesLaneController
   background: {fileID: 3494502524608335085}
-  obstaclePrefab: {fileID: 6350009540312952069, guid: d9b50cacf814cf34d9eb40d8b3e803ff, type: 3}
+  obstacleGroupPrefab: {fileID: 6194516653022538666, guid: 5ccedb3badaa57541bdf575001de83a9, type: 3}
