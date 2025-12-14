@@ -3,18 +3,11 @@ using UnityEngine;
 
 namespace Frogxel.Lanes
 {
-    public class ObstacleGroup : MonoBehaviour
+    public class ObstacleGroup : Moveable
     {
-        private const int ObstacleWidth = 1;
-        
         [SerializeField] private Obstacle obstaclePrefab;
 
         private readonly List<Obstacle> _obstacles = new();
-
-        public static int GetObstacleGroupWidth(int totalObstacles)
-        {
-            return totalObstacles * ObstacleWidth;
-        }
 
         public void Init(MovingObstaclesLaneConfig movingObstaclesLaneConfig)
         {
@@ -27,43 +20,15 @@ namespace Frogxel.Lanes
                     
                 obstacle.transform.localPosition = new Vector3(obstaclePositionX, 0, 0);
                     
-                obstaclePositionX += ObstacleWidth;
+                obstaclePositionX += Obstacle.Width;
                 
                 _obstacles.Add(obstacle);
             }
         }
-
-        public void Move(Vector2 direction, float moveSpeed)
+        
+        protected override int GetWidth()
         {
-            transform.Translate(direction * (moveSpeed * Time.deltaTime));
-        }
-
-        public void TryResetPosition(Vector2 moveDirection, float minResetPosX, float maxResetPosX, float minPosX,
-            float maxPosX)
-        {
-            var currentPosition = transform.position;
-            var currentPosX = currentPosition.x;
-            var currentPosY = currentPosition.y;
-            var isMovingRight = IsMovingRight(moveDirection);
-            var width = GetObstacleGroupWidth(_obstacles.Count);
-            var halfWidth = width / 2f;
-
-            if (isMovingRight)
-            {
-                if (currentPosX >= maxPosX - halfWidth)
-                {
-                    transform.position = new Vector2(minResetPosX - halfWidth, currentPosY);
-                }
-                
-                return;
-            }
-            
-            if (currentPosX > minPosX + halfWidth)
-            {
-                return;
-            }
-            
-            transform.position = new Vector2(maxResetPosX + halfWidth, currentPosY);
+            return _obstacles.Count * Obstacle.Width;
         }
         
         private static float GetStartingObstaclePositionX(int totalObstacles)
@@ -73,7 +38,7 @@ namespace Frogxel.Lanes
                 return 0;
             }
 
-            return 0 - ObstacleWidth / 2f * (totalObstacles - 1);
+            return 0 - Obstacle.Width / 2f * (totalObstacles - 1);
         }
 
         private static bool IsMovingRight(Vector2 moveDirection)

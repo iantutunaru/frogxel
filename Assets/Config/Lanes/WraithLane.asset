@@ -15,6 +15,7 @@ MonoBehaviour:
   <Prefab>k__BackingField: {fileID: 3797604880175944821, guid: 0a43d02c151cfe4439a316de6354e33d, type: 3}
   <Background>k__BackingField: {fileID: -1683239671, guid: 8625a42af4147f64e84bb985187ce27c, type: 3}
   <Height>k__BackingField: 1
+  <MoveablePrefab>k__BackingField: {fileID: 6194516653022538666, guid: 5ccedb3badaa57541bdf575001de83a9, type: 3}
   <MoveDirection>k__BackingField: {x: 1, y: 0}
   <MoveSpeed>k__BackingField: 1
   <GapWidth>k__BackingField: 5

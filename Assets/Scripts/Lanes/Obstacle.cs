@@ -5,6 +5,8 @@ namespace Frogxel.Lanes
 {
     public class Obstacle : MonoBehaviour
     {
+        public const int Width = 1;
+        
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Animator animator;
 
