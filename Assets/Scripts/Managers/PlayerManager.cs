@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,6 @@ namespace Managers
     public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private GameManager gameManager;
-        [SerializeField] private UIManager uiManager;
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private PauseManager pauseManager;
         
@@ -37,8 +37,6 @@ namespace Managers
 
             // If player is first then start the game
             if (players.Count != 1) return;
-            
-            uiManager.TurnOffStartMenu();
             
             gameManager.NewGame();
         }

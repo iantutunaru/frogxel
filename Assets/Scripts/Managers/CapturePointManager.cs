@@ -1,39 +1,47 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using Frogxel.Lanes;
+using Player;
 using UnityEngine;
 
 namespace Managers
 {
     public class CapturePointManager : MonoBehaviour
     {
-        // Array of Homes that players can capture
-        [SerializeField] private Home[] capturePoints;
-        
+        [Header("Managers")]
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private GameManager gameManager;
+
+        [Header("Score points")] 
+        [SerializeField] private int pointsForCapturing = 500;
+        [SerializeField] private int pointsForCapturingLastPoint = 1000;
         
-        public Home[] GetCapturePoints() { return capturePoints; }
+        private List<CapturePoint> _capturePoints = new();
         
-        /// <summary>
-        /// When home is captured by the player then disable controls of that player, increase their score by a set amount and check if all homes have been captured.
-        /// If all homes have been captured and this was the last home then give player a double reward and pause the game. Otherwise, respawn the player.
-        /// </summary>
-        public void GivePointsForCapturingPoint(PlayerController player)
+        public void ResetCapturePoints()
         {
-            player.SetWon(true);
-
-            scoreManager.SetScore(player, player.GetScore() + 500);
-
-            // Check if all homes have been captured
-            if (Cleared())
+            if (_capturePoints.Count <= 0)
             {
-                scoreManager.SetScore(player, player.GetScore() + 1000);
-                StopAllCoroutines();
-                Invoke(nameof(AllBasesCaptured), 1f);
+                throw new Exception("No capture points found");
             }
-            else
+            
+            foreach (var capturePoint in _capturePoints)
             {
-                Invoke(nameof(RespawnPlayer), 1f);
+                capturePoint.Clear();
             }
+        }
+        
+        private void OnEnable()
+        {
+            CapturePointsLaneController.CapturePointsInitialised += OnCapturePointsInitialised;
+            CapturePoint.Captured += OnPointCaptured;
+        }
+
+        private void OnDisable()
+        {
+            CapturePointsLaneController.CapturePointsInitialised -= OnCapturePointsInitialised;
+            CapturePoint.Captured -= OnPointCaptured;
         }
 
         private void RespawnPlayer()
@@ -52,15 +60,34 @@ namespace Managers
         private bool Cleared()
         {
             // Go through each home
-            return capturePoints.All(home => home.enabled);
+            return _capturePoints.All(capturePoint => capturePoint.IsCaptured);
         }
-
-        public void ResetCapturePoints()
+        
+        private void OnCapturePointsInitialised(List<CapturePoint> capturePoints)
         {
-            // Hide trophy of each home to re-enable capturing
-            foreach (var home in capturePoints)
+            _capturePoints = new List<CapturePoint>(capturePoints);
+        }
+        
+        /// <summary>
+        /// When home is captured by the player then disable controls of that player, increase their score by a set amount and check if all homes have been captured.
+        /// If all homes have been captured and this was the last home then give player a double reward and pause the game. Otherwise, respawn the player.
+        /// </summary>
+        private void OnPointCaptured(PlayerController player)
+        {
+            player.SetWon(true);
+
+            scoreManager.SetScore(player, player.GetPlayerStats().GetScore() + pointsForCapturing);
+
+            // Check if all homes have been captured
+            if (Cleared())
             {
-                home.enabled = false;
+                scoreManager.SetScore(player, player.GetPlayerStats().GetScore() + pointsForCapturingLastPoint);
+                StopAllCoroutines();
+                Invoke(nameof(AllBasesCaptured), 1f);
+            }
+            else
+            {
+                Invoke(nameof(RespawnPlayer), 1f);
             }
         }
     }

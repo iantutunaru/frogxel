@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c582347636c544c88bda78bfb476f4bd, type: 3}
+  m_Name: Lanes
+  m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.LanesConfig
+  <LaneWidth>k__BackingField: 13
+  <Lanes>k__BackingField:
+  - {fileID: 11400000, guid: 0a52b037e0ec2ab4a91b6e6e515f2685, type: 2}
+  - {fileID: 11400000, guid: 08a48b1fc16c57644afbdcaeb7997bde, type: 2}
+  - {fileID: 11400000, guid: 85ce3703f9441dd40880cd4e02c6c3cb, type: 2}
+  - {fileID: 11400000, guid: 20634a8f4fb44b14fb56cb1dbb9187b5, type: 2}
+  - {fileID: 11400000, guid: 346324eb71358d5498e32720fbfd4783, type: 2}
+  - {fileID: 11400000, guid: dc5018e73b7b6fc419b17460fc1d779c, type: 2}
+  - {fileID: 11400000, guid: 468d45262aea5684399014e7e711e84a, type: 2}
+  - {fileID: 11400000, guid: 967c3cd63025bb1449c4d223d34cfb7b, type: 2}
+  - {fileID: 11400000, guid: b3d7d267f6e048543a90c7b553c743da, type: 2}
+  - {fileID: 11400000, guid: f98bb53d711bc5f4499efa04bd4c5cdd, type: 2}
+  - {fileID: 11400000, guid: 10eacee96f1b4f848a73875f6fa3d0fa, type: 2}
+  - {fileID: 11400000, guid: 8b5f1f917a75b0c4191f86608d3fba3f, type: 2}
+  - {fileID: 11400000, guid: a4d6ed9ad9c8a164a92a5734a8e222b1, type: 2}
+  - {fileID: 11400000, guid: 1264866a766da7c44a12e59798ed359f, type: 2}
+  - {fileID: 11400000, guid: 468d45262aea5684399014e7e711e84a, type: 2}
