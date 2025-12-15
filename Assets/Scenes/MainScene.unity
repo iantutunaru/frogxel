@@ -915,7 +915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 2239079338065858837}
-  uiManager: {fileID: 575448414}
   scoreManager: {fileID: 575448413}
   pauseManager: {fileID: 7305891537363341960}
 --- !u!114 &2239079338065858837
@@ -1046,7 +1045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Managers.CapturePointManager
   scoreManager: {fileID: 575448413}
   gameManager: {fileID: 2239079338065858837}
-  pointsForCapturingPoint: 500
+  pointsForCapturing: 500
   pointsForCapturingLastPoint: 1000
 --- !u!114 &7305891537363341960
 MonoBehaviour:
