@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pirahna3Lane
   m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Lanes.MovingPlatformLaneConfig
   <Prefab>k__BackingField: {fileID: 4403077281519051554, guid: 894b31d7c674b1c4fab58680062c878d, type: 3}
-  <Background>k__BackingField: {fileID: 21300000, guid: fee7272cbf4a44a47927c8aad58478de, type: 3}
+  <Background>k__BackingField: {fileID: 21300000, guid: f42ffa2165e62cd49b22ce014d8a83a4, type: 3}
   <Height>k__BackingField: 1
   <MoveablePrefab>k__BackingField: {fileID: 703672658465452541, guid: c8ec5e3f2657e0749b85a322b1ec05fc, type: 3}
   <MoveDirection>k__BackingField: {x: -1, y: 0}
