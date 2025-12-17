@@ -8,7 +8,22 @@ namespace Managers
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private int scoreForAdvancingRow = 10;
-    
+
+
+        /// <summary>
+        /// Alex's code
+        /// - I added AddScore to control item pickup. I don't touch the rest of the code.
+        /// </summary>
+        public void AddScore(PlayerController player, int amount)
+        {
+            // var powerups = player.GetComponent<PlayerPowerupController>();
+            //float mult = (powerups != null) ? powerups.ScoreMultiplier : 1f;
+
+            int finalAmount = Mathf.RoundToInt(amount);
+            SetScore(player, 1 + finalAmount);
+        }
+
+
         /// <summary>
         /// Enable score of the selected player and set the score to 0
         /// </summary>
