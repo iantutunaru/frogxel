@@ -59,5 +59,8 @@ TagManager:
   - name: Wall
     uniqueID: 3360534839
     locked: 0
+  - name: Item
+    uniqueID: 809679587
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -679,6 +679,60 @@ Transform:
   - {fileID: 1436665365}
   m_Father: {fileID: 1514110662}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1491086522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491086523}
+  - component: {fileID: 1491086524}
+  m_Layer: 0
+  m_Name: pickupManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1491086523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491086522}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1514110662}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1491086524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491086522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d1f7796c91324a4dbf71aa99e84313f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupSpawner
+  lanesController: {fileID: 1787893583}
+  lanesRoot: {fileID: 1787893584}
+  pickupPrefabs:
+  - {fileID: 7454679920805773886, guid: 786d58b2e8284c649b5d7d09b67d9b43, type: 3}
+  - {fileID: 8423413026861721452, guid: 50c18026d67397e4593ed98fd6b10d1f, type: 3}
+  - {fileID: 5669193787695285077, guid: 42e8366f1e4f6754d8f631fb2bd31b26, type: 3}
+  spawnOnEnable: 1
+  initialSpawnCount: 3
+  spawnInterval: 3
+  maxPickupsPerLane: 1
 --- !u!1 &1514110661
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +767,7 @@ Transform:
   - {fileID: 1540893746}
   - {fileID: 1482845255}
   - {fileID: 1787893584}
+  - {fileID: 1491086523}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1540893745
@@ -725,11 +780,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4039742377156199711, guid: 786d58b2e8284c649b5d7d09b67d9b43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.91
+      value: -2.7847
       objectReference: {fileID: 0}
     - target: {fileID: 4039742377156199711, guid: 786d58b2e8284c649b5d7d09b67d9b43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.9
+      value: -5.982
       objectReference: {fileID: 0}
     - target: {fileID: 4039742377156199711, guid: 786d58b2e8284c649b5d7d09b67d9b43, type: 3}
       propertyPath: m_LocalPosition.z
