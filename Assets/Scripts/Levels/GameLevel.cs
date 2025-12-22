@@ -1,5 +1,5 @@
-﻿
-using Frogxel.Lanes;
+﻿using Frogxel.Lanes;
+using Frogxel.Managers;
 using Managers;
 using Player;
 using UnityEngine;
@@ -11,6 +11,8 @@ namespace Frogxel.Levels
         [SerializeField] private LanesController lanesController;
         [SerializeField] private PauseManager pauseManager;
         [SerializeField] private PlayerManager playerManager;
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private string mainMenuSceneName;
         
         public override void OnEnter()
         {
@@ -29,6 +31,18 @@ namespace Frogxel.Levels
             
             base.OnExit();
         }
+        
+        public void HandleResume()
+        {
+            playerManager.UseGameControls();
+            pauseManager.UnpauseGame();
+            uiManager.ShowGameUi();
+        }
+
+        public void HandleQuit()
+        {
+            LevelManager.TryChangeLevel(mainMenuSceneName);
+        }
 
         private void StartGame()
         {
@@ -40,12 +54,7 @@ namespace Frogxel.Levels
         {
             playerManager.UseMenuControls();
             pauseManager.PauseGame();
-        }
-        
-        private void HandleResume()
-        {
-            playerManager.UseGameControls();
-            pauseManager.UnpauseGame();
+            uiManager.ShowPauseMenu();
         }
     }
 }

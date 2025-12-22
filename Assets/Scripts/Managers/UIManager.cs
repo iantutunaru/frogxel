@@ -8,6 +8,8 @@ namespace Managers
     {
         // GameObject containing title, title background and title text
         [SerializeField] private GameObject startMenu;
+        [SerializeField] private GameObject gameUi;
+        [SerializeField] private GameObject pauseMenu;
     
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private ScoreManager scoreManager;
@@ -52,6 +54,18 @@ namespace Managers
             gameOverMenu.SetActive(true);
             
             DisplayPlayAgainText();
+        }
+        
+        public void ShowGameUi()
+        {
+            gameUi.SetActive(true);
+            pauseMenu.SetActive(false);
+        }
+
+        public void ShowPauseMenu()
+        {
+            gameUi.SetActive(false);
+            pauseMenu.SetActive(true);
         }
 
         private void DisplayPlayAgainText()
