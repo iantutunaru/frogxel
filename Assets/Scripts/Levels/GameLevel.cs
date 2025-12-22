@@ -34,6 +34,9 @@ namespace Frogxel.Levels
         
         public void HandleResume()
         {
+            HideCursor();
+            ResumeTime();
+            
             playerManager.UseGameControls();
             pauseManager.UnpauseGame();
             uiManager.ShowGameUi();
@@ -41,20 +44,50 @@ namespace Frogxel.Levels
 
         public void HandleQuit()
         {
+            ShowCursor();
+            ResumeTime();
+            
             LevelManager.TryChangeLevel(mainMenuSceneName);
         }
 
         private void StartGame()
         {
+            HideCursor();
+            
             lanesController.Init();
             pauseManager.UnpauseGame();
         }
         
         private void HandlePause()
         {
+            ShowCursor();
+            PauseTime();
+            
             playerManager.UseMenuControls();
             pauseManager.PauseGame();
             uiManager.ShowPauseMenu();
+        }
+
+        private void HideCursor()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        private void ShowCursor()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        private void PauseTime()
+        {
+            Time.timeScale = 0;
+        }
+
+        private void ResumeTime()
+        {
+            Time.timeScale = 1;
         }
     }
 }
