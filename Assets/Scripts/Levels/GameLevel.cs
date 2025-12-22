@@ -1,5 +1,6 @@
 ﻿
 using Frogxel.Lanes;
+using Managers;
 using UnityEngine;
 
 namespace Frogxel.Levels
@@ -7,6 +8,7 @@ namespace Frogxel.Levels
     public class GameLevel : Level
     {
         [SerializeField] private LanesController lanesController;
+        [SerializeField] private PauseManager pauseManager;
         
         public override void OnEnter()
         {
@@ -23,6 +25,7 @@ namespace Frogxel.Levels
         private void StartGame()
         {
             lanesController.Init();
+            pauseManager.UnpauseGame();
         }
     }
 }
