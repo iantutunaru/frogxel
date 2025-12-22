@@ -523,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4447ae38992829c4c8f414aba82b972b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers.UIManager
+  eventSystem: {fileID: 1953622693}
   startMenu: {fileID: 424002042}
   gameUi: {fileID: 8330788502609333752}
   pauseMenu: {fileID: 430640953}

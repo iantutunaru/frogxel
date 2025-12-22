@@ -1,11 +1,13 @@
 using Player;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Managers
 {
     public class UIManager : MonoBehaviour
     {
+        [SerializeField] private EventSystem eventSystem;
         // GameObject containing title, title background and title text
         [SerializeField] private GameObject startMenu;
         [SerializeField] private GameObject gameUi;
@@ -60,6 +62,8 @@ namespace Managers
         {
             gameUi.SetActive(true);
             pauseMenu.SetActive(false);
+
+            DeselectSelectedElement();
         }
 
         public void ShowPauseMenu()
@@ -71,6 +75,11 @@ namespace Managers
         private void DisplayPlayAgainText()
         {
             playAgainText.gameObject.SetActive(true);
+        }
+
+        private void DeselectSelectedElement()
+        {
+            eventSystem.SetSelectedGameObject(null);
         }
     }
 }

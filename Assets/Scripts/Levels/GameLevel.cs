@@ -49,6 +49,28 @@ namespace Frogxel.Levels
             
             LevelManager.TryChangeLevel(mainMenuSceneName);
         }
+        
+        private static void HideCursor()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        private static void ShowCursor()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        private static void PauseTime()
+        {
+            Time.timeScale = 0;
+        }
+
+        private static void ResumeTime()
+        {
+            Time.timeScale = 1;
+        }
 
         private void StartGame()
         {
@@ -66,28 +88,6 @@ namespace Frogxel.Levels
             playerManager.UseMenuControls();
             pauseManager.PauseGame();
             uiManager.ShowPauseMenu();
-        }
-
-        private void HideCursor()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
-        private void ShowCursor()
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-
-        private void PauseTime()
-        {
-            Time.timeScale = 0;
-        }
-
-        private void ResumeTime()
-        {
-            Time.timeScale = 1;
         }
     }
 }
