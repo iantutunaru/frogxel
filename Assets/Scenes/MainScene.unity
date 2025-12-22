@@ -611,6 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b778155e68984e51b3fd6acc0d842c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Levels.GameLevel
+  lanesController: {fileID: 1787893583}
 --- !u!114 &1344122500 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3177073180075437104, guid: 48d295d4c8061f544a935a5f735f82a0, type: 3}
@@ -973,7 +974,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84058ca416e51ea4da2abb173eec1ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lanesController: {fileID: 1787893583}
   playerManager: {fileID: 1934519157205179099}
   scoreManager: {fileID: 575448413}
   uiManager: {fileID: 575448414}
@@ -1197,6 +1197,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8213923654038568371, guid: 48d295d4c8061f544a935a5f735f82a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8561806317695862284, guid: 48d295d4c8061f544a935a5f735f82a0, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1302,8 +1306,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 2370301553544099024, guid: 48d295d4c8061f544a935a5f735f82a0, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48d295d4c8061f544a935a5f735f82a0, type: 3}

@@ -10,8 +10,6 @@ namespace Managers
     /// </summary>
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private LanesController lanesController;
-        
         [Header("Managers")]
         [SerializeField] private PlayerManager playerManager;
         [SerializeField] private ScoreManager scoreManager;
@@ -27,15 +25,12 @@ namespace Managers
         {
             uiManager.NewGame();
             pauseManager.UnpauseGame();
-            lanesController.Clear();
             
             // If there are players in the game
             if (playerManager.GetPlayers().Count > 0)
             {
                 scoreManager.ResetPlayerScore();
             }
-
-            lanesController.Init();
 
             NewLevel();
         }
