@@ -1,18 +1,30 @@
+using Frogxel.Managers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Menus
 {
     public class MainMenu : MonoBehaviour
     {
+        [SerializeField] private string gameSceneName;
+        [SerializeField] private string creditsSceneName;
+        
         public void PlayGame()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            LevelManager.TryChangeLevel(gameSceneName);
+        }
+
+        public void OpenCredits()
+        {
+            LevelManager.TryChangeLevel(creditsSceneName);
         }
 
         public void QuitGame()
         {
-            Application.Quit();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
         }
     }
 }
