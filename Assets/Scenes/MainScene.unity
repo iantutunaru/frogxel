@@ -657,6 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Frogxel.Levels.GameLevel
   lanesController: {fileID: 1787893583}
   pauseManager: {fileID: 7305891537363341960}
+  playerManager: {fileID: 1934519157205179099}
 --- !u!114 &1344122500 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3177073180075437104, guid: 48d295d4c8061f544a935a5f735f82a0, type: 3}

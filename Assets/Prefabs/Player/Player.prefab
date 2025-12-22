@@ -662,6 +662,8 @@ MonoBehaviour:
   playerStats: {fileID: 2852249109119320908}
   playerAnimator: {fileID: 1265533663677696100}
   maxLeapDuration: 0.125
+  gameActionMapName: Player
+  uiActionMapName: UI
 --- !u!114 &2852249109119320908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +787,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 123b1679-f6d8-49c1-9c05-6de69323a9ac
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2714394890584546052}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
+        m_MethodName: HandlePause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3c7947d0-005d-4d23-bc80-7e4ddde854d2
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2714394890584546052}
+        m_TargetAssemblyTypeName: Player.PlayerController, Assembly-CSharp
+        m_MethodName: HandleResume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2d211915-86b4-4ece-b2da-63d1fd7ff16a
+    m_ActionName: 'UI/Resume[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

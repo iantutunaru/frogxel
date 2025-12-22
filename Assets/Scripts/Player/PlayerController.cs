@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Managers;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace Player
     /// </summary>
     public class PlayerController : MonoBehaviour
     {
+        public static event Action Pause;
+        public static event Action Resume;
+        
         // Handles the player's visual representation in the game
         private SpriteRenderer spriteRenderer;
         // The position where the player character respawns
@@ -32,6 +36,8 @@ namespace Player
         [SerializeField] private PlayerAnimator playerAnimator;
         
         [SerializeField] private float maxLeapDuration = 0.125f;
+        [SerializeField] private string gameActionMapName;
+        [SerializeField] private string uiActionMapName;
         
         private GameManager gameManager;
         private ScoreManager scoreManager;
@@ -262,6 +268,36 @@ namespace Player
             {
                 gameManager.ContinueGame();
             }
+        }
+
+        public void HandlePause(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
+                return;
+            }
+            
+            Pause?.Invoke();
+        }
+
+        public void HandleResume(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
+                return;
+            }
+            
+            Resume?.Invoke();
+        }
+
+        public void UseGameControls()
+        {
+            playerInput.SwitchCurrentActionMap(gameActionMapName);
+        }
+
+        public void UseMenuControls()
+        {
+            playerInput.SwitchCurrentActionMap(uiActionMapName);
         }
     }
 }

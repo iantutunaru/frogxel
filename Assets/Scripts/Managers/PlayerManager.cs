@@ -51,5 +51,21 @@ namespace Managers
                 player.SetWon(true);
             }
         }
+
+        public void UseGameControls()
+        {
+            foreach (var player in players)
+            {
+                player.UseGameControls();
+            }
+        }
+
+        public void UseMenuControls()
+        {
+            foreach (var player in players)
+            {
+                player.UseMenuControls();
+            }
+        }
     }
 }
